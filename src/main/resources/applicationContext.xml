@@ -93,4 +93,6 @@
 
     <!-- 支持实现事务 -->
     <tx:annotation-driven transaction-manager="tx"/>
+
+    <import resource="shiro-applicationContext.xml"/>
 </beans>

@@ -17,4 +17,5 @@ public interface UserDAO {
     int updateByPrimaryKey(TUser record);
 
     TUser queryUserByUsername(String username);
+
 }

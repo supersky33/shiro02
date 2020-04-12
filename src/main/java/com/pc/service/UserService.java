@@ -6,4 +6,6 @@ import com.pc.vo.TUser;
 public interface UserService {
 
     TUser queryUserByUsername(String username);
+
+    int register(TUser user);
 }

@@ -15,5 +15,7 @@ public class TUser implements Serializable {
 
     private String password;
 
+    private String salt;
+
     private static final long serialVersionUID = 1L;
 }

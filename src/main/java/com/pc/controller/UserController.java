@@ -1,9 +1,13 @@
 package com.pc.controller;
 
+import com.pc.dao.UserDAO;
 import com.pc.pojo.User;
+import com.pc.service.UserService;
+import com.pc.vo.TUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/login")
     public String login() {
@@ -46,6 +53,18 @@ public class UserController {
     public String index() {
         System.out.println("index all users");
         return "index";
+    }
+
+    @GetMapping("/register")
+    public String registerPage() {
+        System.out.println("goto register page");
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(TUser user) {
+        userService.register(user);
+        return "redirect:/user/login";
     }
 
 }
