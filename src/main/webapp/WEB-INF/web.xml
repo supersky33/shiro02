@@ -133,6 +133,8 @@
    -->
 
   <!-- shiro -->
+  <!-- 会从spring工厂中获取和它同名的bean, (id='shiroFilter04' ) 接到
+       请求后调用bean的doFilter方法，进行访问控制 -->
   <filter>
     <filter-name>shiroFilter04</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -145,6 +147,8 @@
     <filter-name>shiroFilter04</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <!-- EnvironmentLoaderListener 不再需要， 因为shiro环境已由spring初始化 -->
 
   <!-- shiro监听器 在项目启动时，加载 web-info or classpath下的shiro.ini, 并构建websecurityManager,
        构建所有配置中使用的过滤链（anno,authc等），ShiroFilter会获取此过滤器链
