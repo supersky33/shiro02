@@ -13,8 +13,10 @@
    http://www.springframework.org/schema/context
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+    <!-- 整合mybatis,事件控制等配置不变 -->
 
     <!-- shiro 配置 -->
+    <!-- 声明realm -->
     <bean id="myRealm" class="com.pc.realm.MyRealm">
         <property name="userService" ref="userServiceImpl"/>
         <property name="roleService" ref="roleServiceImpl"/>
