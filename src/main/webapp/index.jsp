@@ -14,16 +14,16 @@
 <body>
    Hello world
    <br/>
-   欢迎您，
+   <shiro:user>欢迎您，<shiro:principal></shiro:principal></shiro:user>
+
    <shiro:authenticated>
-       <shiro:principal></shiro:principal>
        <div>
          <a href="${pageContext.request.contextPath}/user/logout">logout</a>
        </div>
    </shiro:authenticated>
-   <shiro:notAuthenticated>
+   <shiro:guest>
        <a href="${pageContext.request.contextPath}/user/login">login</a>
-   </shiro:notAuthenticated>
+   </shiro:guest>
    <shiro:guest>
        游客
    </shiro:guest>

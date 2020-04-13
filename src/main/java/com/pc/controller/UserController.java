@@ -32,6 +32,7 @@ public class UserController {
         // 获取subject 调用login
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        token.setRememberMe(true);
         // 登录失败会抛出异常，交由异常解释器处理
         subject.login(token);
         return "index";
