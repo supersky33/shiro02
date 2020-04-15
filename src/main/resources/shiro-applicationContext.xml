@@ -52,6 +52,8 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
+        <!-- 将sessionManager关联到SecurityManager -->
+        <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
     <!-- shiroFilter 注入的核心对象 -->
@@ -70,6 +72,30 @@
                 /user/logout = logout
             </value>
         </property>
+    </bean>
+
+    <!-- 增加session管理相关配置 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <!-- cookie 的 key = 'sid' -->
+        <property name="name" value="JSESSIONID"/>
+        <!-- 只允许HTTP请求访问cookie -->
+        <property name="httpOnly" value="true"/>
+        <!-- cookie过期时间， -1：存活一个会话，单位：秒  默认为-1 -->
+        <property name="maxAge" value="-1"/>
+    </bean>
+
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!-- 默认值和配置中给出的一致，所以bean:sessionIdCookie可以省略 -->
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="globalSessionTimeout" value="1800000" />
+        <!-- 注册session的监听器  -->
+        <property name="sessionListeners">
+            <list>
+                <bean class="com.pc.session.MySessionListener"/>
+            </list>
+        </property>
+        <!-- session检测的时间间隔 -->
+        <property name="sessionValidationInterval" value="10000000" />
     </bean>
 
 </beans>
